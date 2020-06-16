@@ -1,0 +1,7 @@
+,parent,child
+0,http://id.nlm.nih.gov/mesh/D000602,http://id.nlm.nih.gov/mesh/D000596
+1,http://id.nlm.nih.gov/mesh/D000596,http://id.nlm.nih.gov/mesh/D000598
+2,http://id.nlm.nih.gov/mesh/D000598,http://id.nlm.nih.gov/mesh/D024322
+3,http://id.nlm.nih.gov/mesh/D024322,http://id.nlm.nih.gov/mesh/D014443
+4,http://id.nlm.nih.gov/mesh/D014443,http://id.nlm.nih.gov/mesh/D004295
+5,http://id.nlm.nih.gov/mesh/D004295,http://id.nlm.nih.gov/mesh/D007980

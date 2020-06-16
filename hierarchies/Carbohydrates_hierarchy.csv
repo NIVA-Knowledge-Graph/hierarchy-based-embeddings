@@ -1,0 +1,15 @@
+,parent,child
+0,http://id.nlm.nih.gov/mesh/D002241,http://id.nlm.nih.gov/mesh/D013402
+1,http://id.nlm.nih.gov/mesh/D013402,http://id.nlm.nih.gov/mesh/D000073999
+2,http://id.nlm.nih.gov/mesh/D000073999,http://id.nlm.nih.gov/mesh/D005990
+3,http://id.nlm.nih.gov/mesh/D002241,http://id.nlm.nih.gov/mesh/D006027
+4,http://id.nlm.nih.gov/mesh/D006027,http://id.nlm.nih.gov/mesh/D000617
+5,http://id.nlm.nih.gov/mesh/D000617,http://id.nlm.nih.gov/mesh/D013307
+6,http://id.nlm.nih.gov/mesh/D002241,http://id.nlm.nih.gov/mesh/D006027
+7,http://id.nlm.nih.gov/mesh/D006027,http://id.nlm.nih.gov/mesh/D055231
+8,http://id.nlm.nih.gov/mesh/D055231,http://id.nlm.nih.gov/mesh/D008034
+9,http://id.nlm.nih.gov/mesh/D002241,http://id.nlm.nih.gov/mesh/D006027
+10,http://id.nlm.nih.gov/mesh/D006027,http://id.nlm.nih.gov/mesh/D009675
+11,http://id.nlm.nih.gov/mesh/D002241,http://id.nlm.nih.gov/mesh/D011134
+12,http://id.nlm.nih.gov/mesh/D011134,http://id.nlm.nih.gov/mesh/D002686
+13,http://id.nlm.nih.gov/mesh/D002686,http://id.nlm.nih.gov/mesh/D048271
