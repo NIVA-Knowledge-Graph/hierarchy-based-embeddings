@@ -21,7 +21,7 @@ import os
 import networkx as nx
 import glob
 
-
+# create embeddings based on  tree/single hierarchy
 def create_embeddings(filename, rootnode, target_filename, lambda_factor=0.6):
     df = pd.read_csv(filename)
     # Create the Directed Graph 
@@ -69,6 +69,55 @@ def create_embeddings(filename, rootnode, target_filename, lambda_factor=0.6):
     df_adjacency.fillna(0, inplace=True)
 
     df_adjacency.to_csv(target_filename)
+    
+    
+    
+# create embeddings based on poly-hierarchies/forest
+def create_embeddings_forest(filename, rootnode,target_filename, lambda_factor=0.6):
+    df = pd.read_csv(filename)
+    # Create the Directed Graph 
+    G = nx.from_pandas_edgelist(df,
+                            source='parent',
+                            target='child',
+                            create_using=nx.DiGraph())
+    
+    # find level of node(shortest path from root to current node)
+    optional_attrs = nx.shortest_path_length(G ,rootnode)
+    nx.set_node_attributes(G ,  optional_attrs, 'node_level' )
+    
+    ls_leafnodes = [node for node in G.nodes()]
+    pairs = list(itertools.product(ls_leafnodes, repeat=2)) # create pair of all nodes 
+    all_ancestors = nx.algorithms.all_pairs_lowest_common_ancestor(G, pairs=pairs) # get lowest common ancestors of alll pairs of nodes
+
+
+    # replace ancestor node with its level in the hierarchy
+    ls_ancestors_levels = {}
+    for i in all_ancestors:
+        ls_ancestors_levels[i[0]] = G.node[i[1]]['node_level'] 
+        
+    chunked_data = [[k[0],k[1], v] for k, v in ls_ancestors_levels.items()]
+    df_nodes = pd.DataFrame(chunked_data)
+    df_nodes = df_nodes.rename(columns= {0:'node1', 1:'node2', 2:'weight'})
+    depth = df_nodes.weight.max() # find the maximum levels in the hierarchy
+
+    # create adjancey matrix
+    vals = np.unique(df_nodes[['node1', 'node2']])
+    df_nodes = df_nodes.pivot(index='node1', columns='node2', values='weight'
+                      ).reindex(columns=vals, index=vals, fill_value=0)
+
+    df_adjacency = df_nodes.apply( lambda x:  np.power(  lambda_factor, depth - x))
+
+    # set diagnoal to 1
+    pd.DataFrame.set_diag = set_diag
+    df_adjacency.set_diag(1)
+    df_adjacency.fillna(0, inplace=True)
+
+    
+    df_adjacency.to_csv(target_filename)
+
+
+
+
     
 def set_diag(self, values): 
     n = min(len(self.index), len(self.columns))
